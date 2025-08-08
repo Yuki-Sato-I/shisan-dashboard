@@ -1,0 +1,26 @@
+get:
+  tags:
+    - users
+  summary: sample controller
+  description: return a user detail information.
+  parameters:
+    - name: "userId"
+      in: "path"
+      description: "user id"
+      required: true
+      schema:
+        type: "integer"
+        format: "int64"
+  responses:
+    200:
+      description: "成功時のレスポンス"
+      content:
+        application/json:
+          schema:
+            $ref: "../root.yml#/components/schemas/UserDetailResponse"
+    500:
+      description: "想定外エラー"
+      content:
+        application/json:
+          schema:
+            $ref: "../root.yml#/components/schemas/SystemError"

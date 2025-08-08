@@ -1,0 +1,7 @@
+properties:
+  id:
+    type: "string"
+    format: "UUISDMKDMXXXXXXXX"
+  name:
+    type: "string"
+    example: "doggie"
