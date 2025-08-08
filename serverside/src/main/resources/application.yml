@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: Keiba Dashboard
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/keiba
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
