@@ -1,0 +1,15 @@
+version: '3'
+services:
+  db:
+    image: postgres:17.5
+    volumes:
+      - data:/var/lib/postgresql/data
+      - ./yourlhub-api/db/sql/postgres/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+volumes:
+  data:
+    driver: local
