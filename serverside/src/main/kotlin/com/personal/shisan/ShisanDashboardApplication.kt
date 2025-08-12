@@ -1,11 +1,11 @@
-package com.personal.keiba
+package com.personal.shisan
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class KeibaDashboardApplication
+class ShisanDashboardApplication
 
 fun main(args: Array<String>) {
-	runApplication<KeibaDashboardApplication>(*args)
+	runApplication<ShisanDashboardApplication>(*args)
 }
