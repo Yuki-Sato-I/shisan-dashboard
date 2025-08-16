@@ -5,3 +5,6 @@ pluginManagement {
 	}
 }
 rootProject.name = "shisan api"
+
+include("openapi-generator")
+include("api")

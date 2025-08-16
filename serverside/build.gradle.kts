@@ -1,41 +1,36 @@
 plugins {
-	kotlin("jvm") version "1.9.25"
-	kotlin("plugin.spring") version "1.9.25"
-	id("org.springframework.boot") version "3.5.5-SNAPSHOT"
-	id("io.spring.dependency-management") version "1.1.7"
+	kotlin("jvm") version "1.9.25" apply false
+	kotlin("plugin.spring") version "1.9.25" apply false
+	id("org.springframework.boot") version "3.5.5-SNAPSHOT" apply false
+	id("io.spring.dependency-management") version "1.1.7" apply false
 }
 
-group = "com.personal"
-version = "0.0.1-SNAPSHOT"
-
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+allprojects {
+	group = "com.personal"
+	version = "0.0.1-SNAPSHOT"
+	
+	repositories {
+		mavenCentral()
+		maven { url = uri("https://repo.spring.io/snapshot") }
 	}
 }
 
-repositories {
-	mavenCentral()
-	maven { url = uri("https://repo.spring.io/snapshot") }
-}
+subprojects {
+	apply(plugin = "org.jetbrains.kotlin.jvm")
 
-dependencies {
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    runtimeOnly("org.postgresql:postgresql")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-	testImplementation("org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
-
-kotlin {
-	compilerOptions {
-		freeCompilerArgs.addAll("-Xjsr305=strict")
+	java {
+		toolchain {
+			languageVersion = JavaLanguageVersion.of(21)
+		}
 	}
-}
 
-tasks.withType<Test> {
-	useJUnitPlatform()
+	kotlin {
+		compilerOptions {
+			freeCompilerArgs.addAll("-Xjsr305=strict")
+		}
+	}
+
+	tasks.withType<Test> {
+		useJUnitPlatform()
+	}
 }
