@@ -15,7 +15,7 @@ on:
     types: [opened, assigned]
 
 jobs:
-  claude-response:
+  claude-pr:
     if: |
       (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
@@ -31,19 +31,19 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v2
         with:
-          app-id: ${{ secrets.CLAUDE_APP_ID }}
-          private-key: ${{ secrets.CLAUDE_APP_PRIVATE_KEY }}
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.CLAUDE_AWS_ROLE_TO_ASSUME }}
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
           aws-region: ap-northeast-1
 
       - uses: anthropics/claude-code-action@beta
         with:
+          model: "arn:aws:bedrock:ap-southeast-2:290221718614:inference-profile/apac.anthropic.claude-sonnet-4-20250514-v1:0"
+          use_bedrock: "true"
+          github_token: ${{ steps.app-token.outputs.token }}
           trigger_phrase: "@claude"
           timeout_minutes: "60"
-          github_token: ${{ steps.app-token.outputs.token }}
-          use_bedrock: "true"
-          model: "us.anthropic.claude-sonnet-4-20250514-v1:0"
