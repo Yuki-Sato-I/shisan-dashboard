@@ -8,10 +8,10 @@ servers:
     description: example1
 paths:
   /users/{userId}/:
-    $ref: "paths/UserDetail.yml"
+    $ref: ./paths/UserDetail.yml
 components:
   schemas:
     SystemError:
-      $ref: "schemas/errors/SystemError.yml"
+      $ref: ./schemas/errors/SystemError.yml
     UserDetailResponse:
-      $ref: "schemas/responses/UserDetail.yml"
+      $ref: ./schemas/responses/UserDetail.yml
