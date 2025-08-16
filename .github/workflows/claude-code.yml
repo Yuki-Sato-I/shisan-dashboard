@@ -38,7 +38,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-          aws-region: Asia Pacific (Tokyo)
+          aws-region: ap-northeast-2
 
       - uses: anthropics/claude-code-action@beta
         with:
