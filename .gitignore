@@ -3,3 +3,4 @@
 *.iml
 *.ipr
 swagger.yml
+.serena/memories/logs
